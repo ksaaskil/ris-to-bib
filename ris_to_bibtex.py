@@ -33,20 +33,20 @@ with open(args.risfile,'r') as f:
             pass
         else:
             field=data[0].strip(' ')
-            value=data[1].strip(' ').strip('\n')
+            value=data[1].strip(' ').strip('\n').strip('\r')
             for case in switch(field):
                 #print case
                 if case('AU'):
                     author_list.append(value)
                 elif case('TI'):
                     title=value
-                elif case('JA'):
+                elif case('JA') or case('JO'):
                     journal=value
                 elif case('VL'):
                     volume=value
                 elif case('PY'):
                     year=value.rsplit('/')[0]
-                    month=value.rsplit('/')[1]
+ #                   month=value.rsplit('/')[1]
                 elif case('SP'):
                     startingpage=value
                 elif case('EP'):
